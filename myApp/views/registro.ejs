@@ -1,0 +1,45 @@
+<%- include('partials/head.ejs') %>
+
+
+<%- include('partials/navbar.ejs') %>
+
+<form class="formulario" method="POST" action="/users/register">
+
+    <h1>Registrate</h1>
+     <div class="contenedor">
+
+     <div class="input-contenedor">
+         <i class="fas fa-user icon"></i>
+         <input name="nombre" type="text" placeholder="Nombre" class="name">
+
+         </div>
+
+         <div class="input-contenedor">
+         <i class="fas fa-envelope icon"></i>
+         <input name="correo" type="text" placeholder="Correo">
+
+         </div>
+
+         <div class="input-contenedor">
+        <i class="fas fa-key icon"></i>
+         <input name="password" type="password" placeholder="Contraseña">  
+         </div>
+
+         <input type="submit" value="Registrate" class="button">
+         <p>Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
+         <p>¿Ya tienes una cuenta?<a class="link" href="login">Iniciar Sesion</a></p>
+     </div>
+    </form>
+
+    <%- include('partials/footer.ejs') %>
+
+
+
+
+
+
+
+
+
+
+

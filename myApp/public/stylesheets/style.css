@@ -1,8 +1,12 @@
 body {
-  
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Lato', sans-serif;
+  /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
 }
 
 a {
   color: #00B7FF;
+}
+
+nav {
+  background-color: #00B7FF;
 }
