@@ -1,0 +1,28 @@
+<!-- Agrego header-->
+<%- include('partials/head.ejs') %>
+
+<!-- Agrego navbar-->
+<%- include('partials/navbar.ejs') %>
+
+<h1>Edita tu producto</h1>
+<form action="/productos/editar/<%=producto.id%>" method="POST">
+    <div>
+        <label for="">Nombre</label>
+        <input type="text" name="nombre" value="<%=producto.nombre%>">
+    </div>
+    <div>
+        <label for="">Descripcion</label>
+        <input type="text" name="descripcion" value="<%=producto.descripcion%>">
+    </div>
+    <div>
+        <label for="">Precio</label>
+        <input type="number" name="precio" value="<%=producto.precio%>">
+    </div>
+    <div>
+        <label for="">Imagen</label>
+        <input type="image" name="imagen" value="<%=producto.imagen%>">
+    </div>
+    <button type="submit">Editar</button>
+</form>
+
+<%- include('partials/footer.ejs') %>

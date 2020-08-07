@@ -5,7 +5,7 @@ module.exports = {
     "database": "hanglose",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "port": "8889"
+    "port": 8889
   },
   "test": {
     "username": "root",
@@ -13,7 +13,7 @@ module.exports = {
     "database": "hanglose",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "port": "8889"
+    "port": 8889
   },
   "production": {
     "username": "root",
@@ -21,6 +21,6 @@ module.exports = {
     "database": "hanglose",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "port": "8889"
+    "port": 8889
   }
 }

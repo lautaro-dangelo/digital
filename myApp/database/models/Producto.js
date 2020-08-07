@@ -16,9 +16,12 @@ module.exports = function(sequelize, dataTypes) {
         },
         precio: {
             type: dataTypes.INTEGER
-        }
+        },
+        nombre: {
+            type: dataTypes.STRING
+        },
     }
-   
+    
     let config = {
         tableName: 'productos',
         timeStamps: false

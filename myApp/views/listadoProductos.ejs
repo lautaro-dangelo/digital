@@ -1,0 +1,37 @@
+<!-- Agrego el head con los links -->
+<%- include('partials/head.ejs') %>
+
+<!-- Agrego la navbar -->
+<%- include('partials/navbar.ejs') %>
+
+<h1>Listado productos</h1>
+<ul>
+    <% for(let i = 0; i < productos.length; i++){ %>
+        <li>
+            <a href="/productos/<%productos[i].id%>">
+            <%= productos[i].imagen %>
+            </a>
+        </li>
+    <% } %>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Agrego el footer -->
+<%- include('partials/footer.ejs') %>

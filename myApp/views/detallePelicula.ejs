@@ -1,0 +1,33 @@
+<!-- Agrego header-->
+<%- include('partials/head.ejs') %>
+
+<!-- Agrego navbar-->
+<%- include('partials/navbar.ejs') %>
+
+<h1><%=producto.nombre%></h1>
+<p><%=producto.descripcion%></p>
+<p><%=producto.precio%></p>
+
+<a href="/productos/editar/<%=producto.id%>">
+    Editar
+</a>
+
+<form action="/productos/borrar/<%=producto.id%>" method="POST">
+<button type="submit">Borrar</button>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%- include('partials/footer.ejs') %>
