@@ -1,9 +1,8 @@
-<%- include('partials/head.ejs') %>
-
+<%- include('partials/headForm.ejs') %>
 
 <%- include('partials/navbar.ejs') %>
 
-<form class="formulario" method="POST" action="/users/register">
+<form class="formulario" method="POST" action="/usuarios">
 
     <h1>Registrate</h1>
      <div class="contenedor">
@@ -27,11 +26,14 @@
 
          <input type="submit" value="Registrate" class="button">
          <p>Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
-         <p>¿Ya tienes una cuenta?<a class="link" href="login">Iniciar Sesion</a></p>
+         <p>¿Ya tienes una cuenta?<a class="link" href="usuarios/login"> Iniciar Sesion</a></p>
      </div>
     </form>
-
-    <%- include('partials/footer.ejs') %>
+    <br>
+    <br>
+    <br>
+    <br>
+   <%- include('partials/footer.ejs') %>
 
 
 

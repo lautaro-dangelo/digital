@@ -7,6 +7,10 @@ a {
   color: #00B7FF;
 }
 
-nav {
+.navbar {
   background-color: #00B7FF;
+}
+
+footer {
+  padding-top: 60px;
 }

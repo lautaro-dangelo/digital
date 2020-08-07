@@ -4,22 +4,15 @@
 <!-- Agrego la navbar -->
 <%- include('partials/navbar.ejs') %>
 
-<h1>Listado productos</h1>
-<ul>
+<div class="card" style="width: 18rem;">
     <% for(let i = 0; i < productos.length; i++){ %>
-        <li>
-            <a href="/productos/<%productos[i].id%>">
-            <%= productos[i].imagen %>
-            </a>
-        </li>
-    <% } %>
-</ul>
-
-
-
-
-
-
+  <img src="<%= productos[i].imagen %>" class="card-img-top" alt="...">
+  <div class="card-body">
+      <h2><%= productos[i].nombre%></h2>
+    <p class="card-text"><%= productos[i].precio%></p>
+  </div>
+  <% } %>
+</div>
 
 
 
