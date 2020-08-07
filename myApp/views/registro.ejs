@@ -5,6 +5,11 @@
 <form class="formulario" method="POST" action="/usuarios">
 
     <h1>Registrate</h1>
+    <div class="errores">
+        <ul>
+
+        </ul>
+    </div>
      <div class="contenedor">
 
      <div class="input-contenedor">
@@ -15,7 +20,7 @@
 
          <div class="input-contenedor">
          <i class="fas fa-envelope icon"></i>
-         <input name="correo" type="text" placeholder="Correo">
+         <input name="mail" type="text" placeholder="Correo">
 
          </div>
 
@@ -33,6 +38,7 @@
     <br>
     <br>
     <br>
+    <script src="/registro.js"></script>
    <%- include('partials/footer.ejs') %>
 
 
