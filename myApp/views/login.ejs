@@ -3,8 +3,19 @@
 
 <%- include('partials/navbar.ejs') %>
 
-<form class="formulario">
+<form class="formulario" method="POST" action="/usuarios/login">
     <h1>Login</h1>
+
+    <% if( typeof errors != 'undefined'){ %>
+        <ul>
+            <% for(let i = 0; i < errors.length; i++){ %>
+                <li>
+                <%= errors[i].msg %>
+                </li>
+          <%  } %>
+        </ul>
+    <% } %> 
+
      <div class="contenedor">
          <div class="input-contenedor">
          <i class="fas fa-envelope icon"></i>

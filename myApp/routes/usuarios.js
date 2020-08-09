@@ -4,12 +4,14 @@ var router = express.Router();
 let db = require('../database/models')
 let { check, validationResult, body } = require('express-validator');
 
+let guestMiddleware = require('../middlewares/guestMiddleware');
+
 const usuariosController = require('../controllers/usuariosController');
 
 //Muestra el formulario de registro
-router.get('/', usuariosController.registro);
+router.get('/', guestMiddleware, usuariosController.registro);
 
-//Creacion de ususario y validaciones con express validator.
+//Creacion de ususario y validaciones con express-validator.
 router.post('/', [
 check('nombre').isLength({min:4}).withMessage('El nombre debe tener al menos 4 caracteres.'),
 check('mail').isEmail().withMessage('El mail no es válido.'),
@@ -28,6 +30,9 @@ body('mail').custom( function(){
 router.get('/login', usuariosController.login)
 
 //Procesa el login
-router.post('/login', usuariosController.processLogin)
+router.post('/login',[
+    check('mail').isEmail().withMessage('Email invalido.'),
+    check('password').isLength({min:8}).withMessage('La contraseña debe tener 8 caracteres.')
+], usuariosController.processLogin)
 
 module.exports = router;

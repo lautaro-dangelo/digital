@@ -29,13 +29,29 @@ let usuariosController = {
     },
     processLogin:function(req,res) {
 
-        for(let i =0; db.Usuario.length < i; i++){
-            if (req.body.mail == db.Usuario[i].mail && bcrypt.compareSync(req.body.password, db.Usuario[i].password)) {
-                res.redirect('/productos')
-            }else{
-                res.render('error')
+        let errors = validationResult(req);
+
+        if(errors.isEmpty()){
+
+        for(let i =0; i < db.Usuario.length; i++){
+            if (db.Usuario[i].mail == req.body.mail) {
+                if(bcrypt.compareSync(req.body.password, db.Usuario[i].password)){
+                    let usuarioALoguearse = db.Usuario[i];
+                    break;
+                }
             }
         }
+        if(usuarioALoguearse == undefined){
+            res.render('login', {errors: [
+                {msg: 'Credencialees invalidas.'}
+            ]});
+        }
+
+        req.session.usuarioLogueado = usuarioALoguearse;
+        res.render('index')
+    }else{
+        res.render('login', {errors: errors});
+    }
     },
 };
 
