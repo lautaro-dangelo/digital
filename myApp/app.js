@@ -6,6 +6,9 @@ var logger = require('morgan');
 var methodOverride = require('method-override');
 var session = require('express-session');
 
+var apiProductosRouter = require('./routes/api/productos');
+var apiUsuariosRouter = require('./routes/api/usuarios');
+
 var indexRouter = require('./routes/index');
 var usuariosRouter = require('./routes/usuarios');
 var productosRouter = require('./routes/productos');
@@ -15,16 +18,12 @@ var logMiddleware = require('./middlewares/logMiddleware');
 var cookieAuthMiddleware = require('./middlewares/cookieAuthMiddleware');
 
 
-
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-//Se hace uso de los middlewares a lo largo de toda la app
-app.use(logMiddleware);
-app.use(cookieAuthMiddleware);
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -33,13 +32,19 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({secret: 'secreto'}));
 
+//Se hace uso de las apis
+app.use('/api/productos', apiProductosRouter);
+app.use('/api/usuarios', apiUsuariosRouter);
 
+//Se hace uso de las rutas
 app.use('/', indexRouter);
 app.use('/usuarios', usuariosRouter);
 app.use('/productos', productosRouter);
 app.use('/carrito', carritoRouter);
 
-
+//Se hace uso de los middlewares a lo largo de toda la app
+app.use(logMiddleware);
+app.use(cookieAuthMiddleware);
 
 app.use(function(req, res, next) {
   next(createError(404));

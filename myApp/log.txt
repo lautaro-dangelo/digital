@@ -1,1 +1,1 @@
-Ingreso en la página /images/portada.jpg
+Ingreso en la página /usuarios/carrito
