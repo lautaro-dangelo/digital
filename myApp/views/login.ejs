@@ -19,12 +19,13 @@
      <div class="contenedor">
          <div class="input-contenedor">
          <i class="fas fa-envelope icon"></i>
-         <input type="text" placeholder="Correo electronico">
+         <input type="text" placeholder="Correo electronico" name="mail">
          </div>
          <div class="input-contenedor">
         <i class="fas fa-key icon"></i>
-         <input type="password" placeholder="Contraseña">
+         <input type="password" placeholder="Contraseña" name="password" >
          </div>
+         <p>Recordame<input type="checkbox" value="recordame" class="button" name="recordame"></p>
          <input type="submit" value="Login" class="button">
          <p>Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
          <p>¿No tienes una cuenta? <a class="link" href="/usuarios"> Registrate </a></p>
@@ -35,5 +36,5 @@
     <br>
     <br>
 
-<script src="/login.js"></script>
+<script src="/login"></script>
 <%- include('partials/footer.ejs') %>

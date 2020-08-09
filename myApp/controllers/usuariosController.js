@@ -15,7 +15,7 @@ let usuariosController = {
         db.Usuario.create({
             nombre: req.body.nombre,
             mail: req.body.mail,
-            password: bcrypt.hashSync(req.body.password),
+            password: bcrypt.hashSync(req.body.password, 10),
         });
         res.redirect('/')} else{
             res.render('registro', {errors: errors.errors})
@@ -33,10 +33,12 @@ let usuariosController = {
 
         if(errors.isEmpty()){
 
+            let usuarioALoguearse;
+
         for(let i =0; i < db.Usuario.length; i++){
             if (db.Usuario[i].mail == req.body.mail) {
                 if(bcrypt.compareSync(req.body.password, db.Usuario[i].password)){
-                    let usuarioALoguearse = db.Usuario[i];
+                     usuarioALoguearse = db.Usuario[i];
                     break;
                 }
             }
@@ -48,6 +50,13 @@ let usuariosController = {
         }
 
         req.session.usuarioLogueado = usuarioALoguearse;
+
+        //Cookie que recuerda al usuario.
+        if(req.body.recordame != undefined){
+            res.cookie('recordame', 
+            usuarioALoguearse.mail, { maxAge: 6000000})
+        }
+
         res.render('index')
     }else{
         res.render('login', {errors: errors});

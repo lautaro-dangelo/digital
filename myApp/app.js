@@ -9,8 +9,10 @@ var session = require('express-session');
 var indexRouter = require('./routes/index');
 var usuariosRouter = require('./routes/usuarios');
 var productosRouter = require('./routes/productos');
+var carritoRouter = require('./routes/carrito');
 
 var logMiddleware = require('./middlewares/logMiddleware');
+var cookieAuthMiddleware = require('./middlewares/cookieAuthMiddleware');
 
 
 
@@ -20,18 +22,22 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+//Se hace uso de los middlewares a lo largo de toda la app
 app.use(logMiddleware);
+app.use(cookieAuthMiddleware);
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({secret:'Secreto'}));
+app.use(session({secret: 'secreto'}));
+
 
 app.use('/', indexRouter);
 app.use('/usuarios', usuariosRouter);
 app.use('/productos', productosRouter);
+app.use('/carrito', carritoRouter);
 
 
 
