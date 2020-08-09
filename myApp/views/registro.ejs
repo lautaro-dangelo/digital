@@ -2,9 +2,19 @@
 
 <%- include('partials/navbar.ejs') %>
 
+
 <form class="formulario" method="POST" action="/usuarios">
 
     <h1>Registrate</h1>
+    <% if( typeof errors != 'undefined'){ %>
+        <ul>
+            <% for(let i = 0; i < errors.length; i++){ %>
+                <li>
+                <%= errors[i].msg %>
+                </li>
+          <%  } %>
+        </ul>
+    <% } %> 
     <div class="errores">
         <ul>
 
