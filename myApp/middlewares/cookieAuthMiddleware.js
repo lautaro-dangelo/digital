@@ -7,7 +7,7 @@ function cookieAuthMiddleware(req, res, next) {
             let usuarioALoguearse;
 
             for(let i =0; i < db.Usuario.length; i++){
-                if (db.Usuario[i].mail == req.cookie.recordame) {
+                if (db.Usuario[i].email == req.cookie.recordame) {
                     
                         usuarioALoguearse = db.Usuario[i];
                         break;

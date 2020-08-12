@@ -2,7 +2,7 @@
 
 
 <%- include('partials/navbar.ejs') %>
-
+<script src="javascripts/login.js"></script>
 <form class="formulario" method="POST" action="/usuarios/login">
     <h1>Login</h1>
 
@@ -19,7 +19,7 @@
      <div class="contenedor">
          <div class="input-contenedor">
          <i class="fas fa-envelope icon"></i>
-         <input type="text" placeholder="Correo electronico" name="mail">
+         <input type="text" placeholder="Correo electronico" name="email">
          </div>
          <div class="input-contenedor">
         <i class="fas fa-key icon"></i>
@@ -36,5 +36,4 @@
     <br>
     <br>
 
-<script src="javascripts/login.js"></script>
 <%- include('partials/footer.ejs') %>

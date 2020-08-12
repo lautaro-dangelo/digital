@@ -8,7 +8,10 @@ module.exports = function(sequelize, dataTypes) {
             primaryKey: true,
             autoIncrement: true
         },
-        mail:{
+        nombre: {
+            type: dataTypes.STRING
+        },
+        email:{
             type: dataTypes.STRING
         },
         password:{
@@ -18,7 +21,7 @@ module.exports = function(sequelize, dataTypes) {
    
     let config = {
         tableName: 'usuarios',
-        timeStamps: false
+        timestamps: false
     }
 
     let Usuario = sequelize.define(alias, cols, config);

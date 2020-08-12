@@ -6,9 +6,9 @@ window.addEventListener('load', function(){
         
         let errores = [];
 
-        let mail = document.querySelector('input.mail');
+        let email = document.querySelector('input.email');
 
-        if(mail.value == ""){
+        if(email.value == ""){
             errores.push('El mail no puede estar vacío.')
         };
 

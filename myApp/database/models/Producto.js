@@ -23,19 +23,21 @@ module.exports = function(sequelize, dataTypes) {
     }
     
     let config = {
+        timestamps: false,
         tableName: 'productos',
-        timeStamps: false
+        
     }
 
     let Producto = sequelize.define(alias, cols, config);
+
 
 
     Producto.associate = function(models){
         Producto.belongsToMany(models.Usuario,{
             as: 'usuarios',
             through: 'usuario_producto',
-            foreignKey: 'producto_id',
-            otherKey: 'usuario_id',
+            foreignKey: 'usuario_producto_fk_1',
+            otherKey: 'usuario_producto_fk_2',
             timeStamps: false
         })
     }

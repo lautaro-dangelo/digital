@@ -2,7 +2,7 @@
 
 <%- include('partials/navbar.ejs') %>
 
-
+<script src="javascripts/registro.js"></script>
 <form class="formulario" method="POST" action="/usuarios">
 
     <h1>Registrate</h1>
@@ -30,7 +30,7 @@
 
          <div class="input-contenedor">
          <i class="fas fa-envelope icon"></i>
-         <input name="mail" type="text" placeholder="Correo">
+         <input name="email" type="text" placeholder="Correo" id="email">
 
          </div>
 
@@ -48,7 +48,7 @@
     <br>
     <br>
     <br>
-    <script src="javascripts/registro.js"></script>
+    <script src="javascripts/registro"></script>
    <%- include('partials/footer.ejs') %>
 
 

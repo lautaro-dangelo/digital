@@ -12,7 +12,7 @@ let usuariosApiController = {
             let respuesta = {
                 meta: {
                     status: 200,
-                    total: productos.length,
+                    total: usuarios.length,
                     url: '/api/usuarios'
                 },
                 data: productos

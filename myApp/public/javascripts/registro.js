@@ -14,9 +14,9 @@ window.addEventListener('load', function(){
             errores.push('El nombre debe tener al menos 4 caracteres.')
         };
 
-        let mail = document.querySelector('input.mail');
+        let email = document.querySelector('input.email');
 
-        if(mail.value == ""){
+        if(email.value == ""){
             errores.push('El mail no puede estar vacío.')
         };
 

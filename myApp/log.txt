@@ -1,1 +1,1 @@
-Ingreso en la página /usuarios/carrito
+Ingreso en la página /javascripts/registro

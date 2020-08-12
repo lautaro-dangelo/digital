@@ -6,16 +6,17 @@ let { check, validationResult, body } = require('express-validator');
 let usuariosController = {
 
     //Crea un nuevo usuario en la db y valida el formulario.
-    creado: function(req, res) {
+    creado: async (req, res) => {
 
+        let a = [ req.body.email, req.body.password ];
         let errors = validationResult(req);
 
         if(errors.isEmpty()){
 
         db.Usuario.create({
             nombre: req.body.nombre,
-            mail: req.body.mail,
-            password: bcrypt.hashSync(req.body.password, 10),
+            email: a[0],
+            password: await bcrypt.hash(a[1], 10),
         });
         res.redirect('/')} else{
             res.render('registro', {errors: errors.errors})
@@ -36,7 +37,7 @@ let usuariosController = {
             let usuarioALoguearse;
 
         for(let i =0; i < db.Usuario.length; i++){
-            if (db.Usuario[i].mail == req.body.mail) {
+            if (db.Usuario[i].email == req.body.email) {
                 if(bcrypt.compareSync(req.body.password, db.Usuario[i].password)){
                      usuarioALoguearse = db.Usuario[i];
                     break;
@@ -54,7 +55,7 @@ let usuariosController = {
         //Cookie que recuerda al usuario.
         if(req.body.recordame != undefined){
             res.cookie('recordame', 
-            usuarioALoguearse.mail, { maxAge: 6000000})
+            usuarioALoguearse.email, { maxAge: 6000000})
         }
 
         res.render('index')

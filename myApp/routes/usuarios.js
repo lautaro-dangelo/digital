@@ -14,11 +14,11 @@ router.get('/', guestMiddleware, usuariosController.registro);
 //Creacion de ususario y validaciones con express-validator.
 router.post('/', [
 check('nombre').isLength({min:4}).withMessage('El nombre debe tener al menos 4 caracteres.'),
-check('mail').isEmail().withMessage('El mail no es válido.'),
+check('email').isEmail().withMessage('El mail no es válido.'),
 check('password').isLength({min:7}).withMessage('La contraseña debe tener al menos 7 caracteres.'),
-body('mail').custom( function(){
-    for(let i = 0; i < db.Usuario[i].mail; i++){
-        if(db.Usuario[i].mail == value){
+body('email').custom( function(){
+    for(let i = 0; i < db.Usuario.length; i++){
+        if(db.Usuario[i].email == value){
             return false ;
         }
     }
@@ -31,7 +31,7 @@ router.get('/login', usuariosController.login)
 
 //Procesa el login
 router.post('/login',[
-    check('mail').isEmail().withMessage('Email invalido.'),
+    check('email').isEmail().withMessage('Email invalido.'),
     check('password').isLength({min:8}).withMessage('La contraseña debe tener 8 caracteres.')
 ], usuariosController.processLogin)
 

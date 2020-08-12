@@ -24,5 +24,8 @@
     </div>
     <button type="submit">Editar</button>
 </form>
-
+<br>
+<form action="/productos/borrar/<%=producto.id%>" method="POST">
+    <button type="submit">Borrar</button>
+    </form>
 <%- include('partials/footer.ejs') %>

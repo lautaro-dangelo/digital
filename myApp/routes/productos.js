@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-let adminMiddleware = require('../middlewares/adminMiddleware');
-
 var productosController = require('../controllers/productosController');
 
 

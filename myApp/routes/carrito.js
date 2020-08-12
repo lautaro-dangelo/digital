@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('carrito');
-});
+let authMiddleware = require('../middlewares/authMiddleware');
+
+let carritoController = require('../controllers/carritoController');
+
+
+router.get('/', authMiddleware, carritoController.list);
 
 module.exports = router;
