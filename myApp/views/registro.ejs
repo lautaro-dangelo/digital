@@ -2,7 +2,7 @@
 
 <%- include('partials/navbar.ejs') %>
 
-<script src="javascripts/registro.js"></script>
+<script src="/javascripts/registro.js"></script>
 <form class="formulario" method="POST" action="/usuarios">
 
     <h1>Registrate</h1>
@@ -30,13 +30,13 @@
 
          <div class="input-contenedor">
          <i class="fas fa-envelope icon"></i>
-         <input name="email" type="text" placeholder="Correo" id="email">
+         <input name="email" type="text" placeholder="Correo" id="email" class="email">
 
          </div>
 
          <div class="input-contenedor">
         <i class="fas fa-key icon"></i>
-         <input name="password" type="password" placeholder="Contraseña">  
+         <input name="password" type="password" placeholder="Contraseña" class="password">  
          </div>
 
          <input type="submit" value="Registrate" class="button">
@@ -48,7 +48,7 @@
     <br>
     <br>
     <br>
-    <script src="javascripts/registro"></script>
+    <script src="../public/javascripts/registro.js"></script>
    <%- include('partials/footer.ejs') %>
 
 

@@ -1,1 +1,1 @@
-Ingreso en la página /javascripts/registro
+Ingreso en la página /public/javascripts/registro.js

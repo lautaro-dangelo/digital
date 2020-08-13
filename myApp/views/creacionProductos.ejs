@@ -3,9 +3,9 @@
 
 <!-- Agrego navbar-->
 <%- include('partials/navbar.ejs') %>
-
+<div class="container">
 <h1>Crea tu producto</h1>
-<form action="/productos/crear" method="POST">
+<form action="/productos/crear" method="POST" enctype="multipart/form-data">
     <div>
         <label for="">Nombre</label>
         <input type="text" name="nombre" >
@@ -20,9 +20,9 @@
     </div>
     <div>
         <label for="">Imagen</label>
-        <input type="image" name="imagen" >
+        <input type="file" name="imagen" id="imagen" class="imagen">
     </div>
     <button type="submit">Crear</button>
 </form>
-
+</div>
 <%- include('partials/footer.ejs') %>

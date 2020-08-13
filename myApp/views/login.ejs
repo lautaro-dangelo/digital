@@ -2,7 +2,7 @@
 
 
 <%- include('partials/navbar.ejs') %>
-<script src="javascripts/login.js"></script>
+<script src="/javascripts/login.js"></script>
 <form class="formulario" method="POST" action="/usuarios/login">
     <h1>Login</h1>
 
@@ -15,15 +15,18 @@
           <%  } %>
         </ul>
     <% } %> 
+    <div class="errores">
+        <ul></ul>
+    </div>
 
      <div class="contenedor">
          <div class="input-contenedor">
          <i class="fas fa-envelope icon"></i>
-         <input type="text" placeholder="Correo electronico" name="email">
+         <input type="text" placeholder="Correo electronico" name="email" id="email" class="email">
          </div>
          <div class="input-contenedor">
         <i class="fas fa-key icon"></i>
-         <input type="password" placeholder="Contraseña" name="password" >
+         <input type="password" placeholder="Contraseña" name="password" class="password">
          </div>
          <p>Recordame<input type="checkbox" value="recordame" class="button" name="recordame"></p>
          <input type="submit" value="Login" class="button">

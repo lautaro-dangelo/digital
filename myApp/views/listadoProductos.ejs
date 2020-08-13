@@ -1,14 +1,12 @@
 <!-- Agrego el head con los links -->
-<%- include('partials/head.ejs') %>
+<%- include('partials/headProd.ejs') %>
 
 <!-- Agrego la navbar -->
 <%- include('partials/navbar.ejs') %>
 
-
 <div class="container-fluid">
   <div class="row">
-      <div class="col-sm-1"> <!-- columna vacía --> </div>
-      <div class="col-3" id="cards">
+      <div class="col-xl-4 col-sm-12 col-lg-4 col-md-6" id="cards">
         <% for(let i = 0; i < productos.length; i++){ %>
         <!-- primera tarjeta pricipio-->
           <a href="productos/<%=productos[i].id%>"> <!-- falta poner ruta usando el controller -->

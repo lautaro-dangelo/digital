@@ -3,10 +3,11 @@
 
 <!-- Agrego navbar-->
 <%- include('partials/navbar.ejs') %> 
-
+<div class="container">
 <h1><%=producto.nombre%></h1>
 <p><%=producto.descripcion%></p>
 <p><%=producto.precio%></p>
+<img src="<%=producto.imagen%>" alt="">
 
 <a href="/productos/editar/<%=producto.id%>">
     Editar
@@ -15,7 +16,7 @@
 <form action="/productos/borrar/<%=producto.id%>" method="POST">
 <button type="submit">Borrar</button>
 </form>
-
+</div>
 
 
 

@@ -6,7 +6,7 @@ window.addEventListener('load', function(){
         
         let errores = [];
 
-        let nombre = document.querySelector('input.nombre');
+        let nombre = document.querySelector('input.name');
 
         if(nombre.value == ""){
             errores.push('El nombre no puede estar vacío.')
@@ -30,7 +30,7 @@ window.addEventListener('load', function(){
         
         if(errores.length > 0){
             e.preventDefault();
-
+            
             let ulErrores = document.querySelector("div.errores ul");
             for (let i = 0; i < errores.length; i++) {
                 

@@ -8,14 +8,14 @@ let productosApiController = {
         .then(function(productos){
 
             for(let i = 0; i < productos.length; i++) {
-              productos[i].setDataValue('endpoint', '/api/productos'+ productos[i].id)
+              productos[i].setDataValue('endpoint', '/api/productos/'+ productos[i].id)
             }
             
             let respuesta = {
                 meta: {
                     status: 200,
                     total: productos.length,
-                    url: '/api/productos'
+                    url: '/api/productos',
                 },
                 data: productos
             };

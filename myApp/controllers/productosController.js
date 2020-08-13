@@ -1,17 +1,18 @@
 let db = require('../database/models');
 
 let productosController = {
-    crear: function(req, res){
+    crear: function(req, res, next){
         db.Producto.findAll()
         .then(function(productos){
             return res.render('creacionProductos', {productos: productos})
         })
     },
     guardado: function(req, res) {
+      
         db.Producto.create({
             nombre: req.body.nombre,
             descripcion: req.body.descripcion,
-            imagen: req.body.imagen,
+            imagen: req.files[0].filename,
             precio: req.body.precio
         });
         res.redirect('/productos')
@@ -35,6 +36,7 @@ let productosController = {
         })
     },
     actualizar:function(req, res){
+        console.log(req)
         db.Producto.update({
             nombre: req.body.nombre,
             descripcion: req.body.descripcion,

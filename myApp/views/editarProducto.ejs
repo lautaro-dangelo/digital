@@ -5,7 +5,7 @@
 <%- include('partials/navbar.ejs') %>
 
 <h1>Edita tu producto</h1>
-<form action="/productos/editar/<%=producto.id%>" method="POST">
+<form action="/productos/editar/<%=producto.id%>" method="POST" enctype="multipart/form-data>
     <div>
         <label for="">Nombre</label>
         <input type="text" name="nombre" value="<%=producto.nombre%>">
@@ -20,7 +20,7 @@
     </div>
     <div>
         <label for="">Imagen</label>
-        <input type="image" name="imagen" value="<%=producto.imagen%>">
+        <input type="file" id="imagen" class="imagen" name="imagen" value="<%=producto.imagen%>">
     </div>
     <button type="submit">Editar</button>
 </form>

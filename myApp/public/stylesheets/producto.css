@@ -1,0 +1,8 @@
+body {
+    background-image: url(../images/van.jpg); 
+}
+
+.card {
+    border: 2px;
+    margin-left: 40px;
+}
