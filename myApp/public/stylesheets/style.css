@@ -18,3 +18,7 @@ footer {
 .card {
   margin-top: 50px;
 }
+
+.imagen {
+  width: fit-content;
+}

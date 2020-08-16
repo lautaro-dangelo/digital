@@ -1,11 +1,13 @@
 <!-- Agrego header-->
-<%- include('partials/head.ejs') %>
+<%- include('partials/headCreado.ejs') %>
 
 <!-- Agrego navbar-->
 <%- include('partials/navbar.ejs') %>
-
+<br>
+<br>
+<div class="container">
 <h1>Edita tu producto</h1>
-<form action="/productos/editar/<%=producto.id%>" method="POST" enctype="multipart/form-data>
+<form action="/productos/editar/<%=producto.id%>" method="POST" enctype="multipart/form-data" class="formulario">
     <div>
         <label for="">Nombre</label>
         <input type="text" name="nombre" value="<%=producto.nombre%>">
@@ -22,10 +24,16 @@
         <label for="">Imagen</label>
         <input type="file" id="imagen" class="imagen" name="imagen" value="<%=producto.imagen%>">
     </div>
-    <button type="submit">Editar</button>
+    <button type="submit" class="btn btn-success">Editar</button>
 </form>
 <br>
 <form action="/productos/borrar/<%=producto.id%>" method="POST">
-    <button type="submit">Borrar</button>
+    <button type="submit" class="btn btn-danger">Borrar</button>
     </form>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
 <%- include('partials/footer.ejs') %>

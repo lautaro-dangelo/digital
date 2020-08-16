@@ -29,7 +29,7 @@ let usuariosController = {
         res.render('login')
     },
     processLogin:function(req,res) {
-
+        
         let errors = validationResult(req);
 
         if(errors.isEmpty()){
@@ -49,7 +49,7 @@ let usuariosController = {
                 {msg: 'Credencialees invalidas.'}
             ]});
         }
-
+        console.log(req);
         req.session.usuarioLogueado = usuarioALoguearse;
         res.redirect('/productos');
 

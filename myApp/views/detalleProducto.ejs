@@ -3,20 +3,23 @@
 
 <!-- Agrego navbar-->
 <%- include('partials/navbar.ejs') %> 
-<div class="container">
+<div class="container-fluid">
+   
+  
 <h1><%=producto.nombre%></h1>
 <p><%=producto.descripcion%></p>
-<p><%=producto.precio%></p>
-<img src="/images/<%=producto.imagen%>" >
+<h3><%=producto.precio%></h3>
+<img src="/images/<%=producto.imagen%>" class="imagen">
 <br>
-<a href="/productos/editar/<%=producto.id%>">
+<a href="/productos/editar/<%=producto.id%>" class="btn btn-warning">
     Editar
 </a>
 
 <form action="/productos/borrar/<%=producto.id%>" method="POST">
-<button type="submit">Borrar</button>
+<button type="submit" class="btn btn-danger">Borrar</button>
 </form>
 </div>
+
 
 
 

@@ -1,14 +1,16 @@
 <!-- Agrego header-->
-<%- include('partials/head.ejs') %>
+<%- include('partials/headCreado.ejs') %>
 
 <!-- Agrego navbar-->
 <%- include('partials/navbar.ejs') %>
-<div class="container-fluid">
+<br>
+<br>
+<div class="container">
     <div class="row"></div>
     <div class="col-1"></div>
     <div class="col-10">
 <h1>Crea tu producto</h1>
-<form action="/productos/crear" method="POST" enctype="multipart/form-data">
+<form action="/productos/crear" method="POST" enctype="multipart/form-data" class="formulario">
     <div class="row"></div>
     <div>
         <label for="">Nombre</label>
@@ -32,12 +34,20 @@
         <label for="">Imagen</label>
         <input type="file" name="imagen" id="imagen" class="imagen">
     </div>
+<br>
 
-
-    <button type="submit">Crear</button>
+    <button type="submit" class="btn btn-primary btn-lg btn-block">Crear</button>
+    <br>
 </div>
 <div class="col-1"></div>
 </form>
 </div>
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <%- include('partials/footer.ejs') %>

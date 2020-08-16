@@ -1,0 +1,27 @@
+body {
+    background-image: url('/images/playa.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.container{
+    background-color: coral;
+    border-radius: 15px;
+    margin-left: 50px;
+    padding-left: 10px;
+    display: flexbox;
+}
+
+.row {
+    display: inline-flex;
+}
+
+.btn {
+    color: gainsboro;
+}
+
+.formulario {
+    margin-left: 50px;
+    align-content: center;
+    
+}

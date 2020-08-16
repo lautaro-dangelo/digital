@@ -1,1 +1,1 @@
-Ingreso en la página /carrito/16
+Ingreso en la página /public/javascripts/registro.js
