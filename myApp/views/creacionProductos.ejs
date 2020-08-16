@@ -3,26 +3,41 @@
 
 <!-- Agrego navbar-->
 <%- include('partials/navbar.ejs') %>
-<div class="container">
+<div class="container-fluid">
+    <div class="row"></div>
+    <div class="col-1"></div>
+    <div class="col-10">
 <h1>Crea tu producto</h1>
 <form action="/productos/crear" method="POST" enctype="multipart/form-data">
+    <div class="row"></div>
     <div>
         <label for="">Nombre</label>
         <input type="text" name="nombre" >
     </div>
+
+
     <div>
         <label for="">Descripcion</label>
         <input type="text" name="descripcion" >
     </div>
+
+
     <div>
         <label for="">Precio</label>
         <input type="number" name="precio" >
     </div>
+
+
     <div>
         <label for="">Imagen</label>
         <input type="file" name="imagen" id="imagen" class="imagen">
     </div>
+
+
     <button type="submit">Crear</button>
+</div>
+<div class="col-1"></div>
 </form>
+</div>
 </div>
 <%- include('partials/footer.ejs') %>

@@ -11,7 +11,7 @@ window.addEventListener('load', function(){
         if(nombre.value == ""){
             errores.push('El nombre no puede estar vacío.')
         }else if(nombre.value.length < 4){
-            errores.push('El nombre debe tener al menos 4 caracteres.')
+            errores.push('El nombre debe tener al menos 3 caracteres.')
         };
 
         let email = document.querySelector('input.email');
@@ -37,5 +37,6 @@ window.addEventListener('load', function(){
                 ulErrores.innerHTML += "<li>"+errores[i]+"</li>"
             }
         }
+       
     })
 });

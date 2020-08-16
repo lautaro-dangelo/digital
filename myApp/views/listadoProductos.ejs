@@ -6,7 +6,7 @@
 
 <div class="container-fluid">
   <div class="row">
-      <div class="col-xl-4 col-sm-12 col-lg-4 col-md-6" id="cards">
+      <div class="col-xl-4 col-sm-12 col-lg-4 col-md-4" id="cards">
         <% for(let i = 0; i < productos.length; i++){ %>
         <!-- primera tarjeta pricipio-->
           <a href="productos/<%=productos[i].id%>"> <!-- falta poner ruta usando el controller -->
@@ -21,6 +21,7 @@
                   <path fill-rule="evenodd" d="M2.5 4.5a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm2-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
                 </svg>
                 </a>
+                <a class="btn btn-primary" href="/carrito/<%=productos[i].id%>" role="button">Comprar</a>
               </div>
             </div>
           </a>

@@ -1,8 +1,17 @@
 body {
     background-image: url(../images/van.jpg); 
+    background-size: cover;
+    background-attachment: fixed;
+
+
 }
 
 .card {
     border: 2px;
     margin-left: 40px;
+
+}
+
+.card:hover {
+    background: lightcoral;
 }

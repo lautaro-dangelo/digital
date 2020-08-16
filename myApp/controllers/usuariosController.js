@@ -34,7 +34,7 @@ let usuariosController = {
 
         if(errors.isEmpty()){
 
-            let usuarioALoguearse;
+        let usuarioALoguearse;
 
         for(let i =0; i < db.Usuario.length; i++){
             if (db.Usuario[i].email == req.body.email) {
@@ -51,6 +51,7 @@ let usuariosController = {
         }
 
         req.session.usuarioLogueado = usuarioALoguearse;
+        res.redirect('/productos');
 
         //Cookie que recuerda al usuario.
         if(req.body.recordame != undefined){
