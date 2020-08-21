@@ -6,12 +6,16 @@ body {
 
 }
 
-.card {
+/* .card {
     border: 2px;
     margin-left: 40px;
 
-}
+} */
 
 .card:hover {
     background: lightcoral;
+}
+
+#crear {
+    margin-left: 80px;
 }

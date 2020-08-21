@@ -46,11 +46,13 @@ let usuariosController = {
         }
         if(usuarioALoguearse == undefined){
             res.render('login', {errors: [
-                {msg: 'Credencialees invalidas.'}
+                {msg: 'Credenciales invalidas.'}
             ]});
         }
-        console.log(req);
+        
+        
         req.session.usuarioLogueado = usuarioALoguearse;
+        console.log(req.session.usuarioLogueado);
         res.redirect('/productos');
 
         //Cookie que recuerda al usuario.

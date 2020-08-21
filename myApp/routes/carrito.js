@@ -6,8 +6,8 @@ let authMiddleware = require('../middlewares/authMiddleware');
 let carritoController = require('../controllers/carritoController');
 
 
-router.get('/', carritoController.list);
+router.get('/', authMiddleware,carritoController.list);
 
-router.post('/agregar', carritoController.agregar);
+router.post('/agregar', authMiddleware,carritoController.agregar);
 
 module.exports = router;
