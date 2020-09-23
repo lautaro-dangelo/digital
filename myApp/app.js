@@ -14,8 +14,8 @@ var usuariosRouter = require('./routes/usuarios');
 var productosRouter = require('./routes/productos');
 var carritoRouter = require('./routes/carrito');
 
-var logMiddleware = require('./middlewares/logMiddleware');
-var cookieAuthMiddleware = require('./middlewares/cookieAuthMiddleware');
+
+let log = require('./middlewares/log');
 
 
 var app = express();
@@ -30,14 +30,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({secret: 'keyboard cat',
-resave: true,
-saveUninitialized: true,
-}));
+app.use(session({secret: 'keyboard cat',resave: false, saveUninitialized: true,}));
+
+//middlewares
+app.use(log);
 
 //Se hace uso de las apis
 app.use('/api/productos', apiProductosRouter);
 app.use('/api/usuarios', apiUsuariosRouter);
+
 
 //Se hace uso de las rutas
 app.use('/', indexRouter);
@@ -45,9 +46,7 @@ app.use('/usuarios', usuariosRouter);
 app.use('/productos', productosRouter);
 app.use('/carrito', carritoRouter);
 
-//Se hace uso de los middlewares a lo largo de toda la app
-app.use(logMiddleware);
-app.use(cookieAuthMiddleware);
+
 
 app.use(function(req, res, next) {
   next(createError(404));

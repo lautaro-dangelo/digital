@@ -33,7 +33,7 @@ router.get('/login', usuariosController.login)
 //Procesa el login
 router.post('/login',[
     check('email').isEmail().withMessage('Email invalido.'),
-    check('password').isLength({min:8}).withMessage('La contraseña debe tener 8 caracteres.')
+    check('password').isLength({min:3}).withMessage('La contraseña debe tener 8 caracteres.')
 ], usuariosController.processLogin)
 
 

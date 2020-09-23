@@ -36,32 +36,41 @@ let usuariosController = {
 
         let usuarioALoguearse;
 
-        for(let i =0; i < db.Usuario.length; i++){
-            if (db.Usuario[i].email == req.body.email) {
-                if(bcrypt.compareSync(req.body.password, db.Usuario[i].password)){
-                     usuarioALoguearse = db.Usuario[i];
-                    break;
-                }
+        db.Usuario.findOne({
+            where: {
+                email: req.body.email
             }
-        }
-        if(usuarioALoguearse == undefined){
-            res.render('login', {errors: [
-                {msg: 'Credenciales invalidas.'}
-            ]});
-        }
-        
-        
-        req.session.usuarioLogueado = usuarioALoguearse;
-        console.log(req.session.usuarioLogueado);
-        res.redirect('/productos');
+        })
+        .then( usuario => {
+            if( !usuario ){
+                
+                res.render('login', {errors: [
+                    {msg: 'El usuario no existe.'}
+                ]});
+            } else {
 
-        //Cookie que recuerda al usuario.
-        if(req.body.recordame != undefined){
-            res.cookie('recordame', 
-            usuarioALoguearse.email, { maxAge: 6000000})
-        }
+                if (bcrypt.compareSync( req.body.password, usuario.password )){
 
-        res.render('index')
+                    req.session.usuarioLogueado = usuario;
+
+                    if(req.body.recordame != undefined){
+                        res.cookie('recordame', 
+                        usuario.email, { maxAge: 6000000})
+                    }
+                    
+                    res.redirect('/productos');
+                } else {
+                    res.render('login', {errors: [
+                        {msg: 'Contraseña incorrecta.'}
+                    ]});
+                }
+
+            }
+        })
+
+        
+
+     
     }else{
         res.render('login', {errors: errors});
     }
