@@ -5,32 +5,32 @@
 <%- include('partials/navbar.ejs') %> 
 <div class="container-fluid">
    
-  
-<h1><%=producto.nombre%></h1>
-<p><%=producto.descripcion%></p>
-<h3><%=producto.precio%></h3>
-<img src="/images/<%=producto.imagen%>" class="imagen">
-<br>
-<a href="/productos/editar/<%=producto.id%>" class="btn btn-warning">
-    Editar
-</a>
-
-<form action="/productos/borrar/<%=producto.id%>" method="POST">
-<button type="submit" class="btn btn-danger">Borrar</button>
-</form>
+    <div class="card mb-3" style="max-width: 1000px;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="/images/<%=producto.imagen%>" class="card-img" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h3 class="card-title"><%=producto.nombre %></h3>
+              <p class="card-text"><%=producto.descripcion%></p>
+              <a href="/productos/editar/<%=producto.id%>" class="btn btn-warning">
+                  Editar
+              </a>
+              <form action="/productos/borrar/<%=producto.id%>" method="POST">
+                  <input type="hidden" name='productoId' value="<%=producto.id%>" >
+                  <button type="submit" class="btn btn-danger">Borrar</button>
+              </form>
+              <form action="/usuarios/carrito" method="POST">
+                <input type="hidden" name='productoId' value="<%=producto.id%>" >
+                <button type="submit" class="btn btn-primary">Comprar</button>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -2,10 +2,10 @@ let db = require('../database/models');
 let bcrypt = require('bcrypt');
 
 let { check, validationResult, body } = require('express-validator');
+const Item = require('../database/models/Item');
 
 let usuariosController = {
 
-    //Crea un nuevo usuario en la db y valida el formulario.
     creado: async (req, res) => {
 
         let a = [ req.body.email, req.body.password ];
@@ -22,12 +22,15 @@ let usuariosController = {
             res.render('registro', {errors: errors.errors})
         }
     },
+
     registro: function(req, res){
         res.render('registro')
     },
+
     login: function(req, res) {
         res.render('login')
     },
+
     processLogin:function(req,res) {
         
         let errors = validationResult(req);
@@ -75,6 +78,52 @@ let usuariosController = {
         res.render('login', {errors: errors});
     }
     },
+
+    carrito: function( req, res ){
+
+        db.Item.findAll({
+            where: {
+                state:1,
+                usuario_id: req.session.usuarioLogueado.id
+            },
+            include: ['productos']
+        })
+        .then( ( items ) =>{
+
+            return res.render('carrito', {items});
+
+        })
+  
+    },
+    agregarCarrito: function( req, res ) {
+
+      db.Producto.findByPk( req.body.id)
+      .then( producto =>{
+
+        db.Item.create({
+            precioUnitario: producto.precio,
+            state: 1,
+            order_id: null,
+            usuario_id: req.session.usuario.id,
+            producto_id: producto.id,
+        })
+      })
+      .then( (item) => {
+
+          return res.send(item)
+
+      })
+    },
+    borrarDelCarrito: function( req, res ) {
+
+        db.Item.destroy({
+            where:{
+             id: req.body.itemId,
+            }
+        })
+
+    },
+
 };
 
 

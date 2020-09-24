@@ -1,8 +1,7 @@
-const { func } = require("prop-types");
 
 module.exports = function(sequelize, dataTypes) {
    
-    let alias = 'Items';
+    let alias = 'Item';
 
     let cols = {
         id: {
@@ -10,16 +9,7 @@ module.exports = function(sequelize, dataTypes) {
             primaryKey: true,
             autoIncrement: true
         },
-        nombre: {
-            type: dataTypes.STRING
-        },
-        precioUnitario:{
-            type: dataTypes.INTEGER
-        },
-        cantidad:{
-            type: dataTypes.INTEGER
-        },
-        subtotal:{
+        precio:{
             type: dataTypes.INTEGER
         },
         state:{
@@ -31,6 +21,9 @@ module.exports = function(sequelize, dataTypes) {
         usuario_id:{
             type: dataTypes.INTEGER
         },
+        producto_id:{
+            type: dataTypes.INTEGER
+        }
 
     }
    
@@ -39,14 +32,26 @@ module.exports = function(sequelize, dataTypes) {
         timestamps: false
     }
 
-    let Items = sequelize.define(alias, cols, config);
+    let Item = sequelize.define(alias, cols, config);
 
-    Items.associate = function( models ) {
-        Items.belongsTo(models.Usuario, {
+    Item.associate = function( models ) {
+        Item.belongsTo(models.Usuario, {
             foreignKey: 'usuario_id'
         })
     };
 
-    return Items;
+    Item.associate = function( models ) {
+        Item.belongsTo(models.Order, {
+            foreignKey: 'order_id'
+        })
+    };
+    Item.associate = function( models ) {
+        Item.belongsTo(models.Producto, {
+            as: 'productos',
+            foreignKey: 'producto_id'
+        })
+    };
+
+    return Item;
     
 };

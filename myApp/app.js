@@ -12,7 +12,7 @@ var apiUsuariosRouter = require('./routes/api/usuarios');
 var indexRouter = require('./routes/index');
 var usuariosRouter = require('./routes/usuarios');
 var productosRouter = require('./routes/productos');
-var carritoRouter = require('./routes/carrito');
+
 
 
 let log = require('./middlewares/log');
@@ -44,7 +44,7 @@ app.use('/api/usuarios', apiUsuariosRouter);
 app.use('/', indexRouter);
 app.use('/usuarios', usuariosRouter);
 app.use('/productos', productosRouter);
-app.use('/carrito', carritoRouter);
+
 
 
 

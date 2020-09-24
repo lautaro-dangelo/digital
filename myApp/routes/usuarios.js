@@ -1,13 +1,13 @@
-var express = require('express');
-var router = express.Router();
-
+let express = require('express');
+let router = express.Router();
 let db = require('../database/models')
-let { check, validationResult, body } = require('express-validator');
+const usuariosController = require('../controllers/usuariosController');
+
+let { check, body } = require('express-validator');
+
+let authMiddleware = require('../middlewares/authMiddleware');
 
 let guestMiddleware = require('../middlewares/guestMiddleware');
-
-const usuariosController = require('../controllers/usuariosController');
-const { func } = require('prop-types');
 
 //Muestra el formulario de registro
 router.get('/', guestMiddleware, usuariosController.registro);
@@ -28,22 +28,29 @@ body('email').custom( function(){
 ],usuariosController.creado);
 
 //Muestra el formulario de login
-router.get('/login', usuariosController.login)
+router.get('/login', guestMiddleware, usuariosController.login);
 
 //Procesa el login
 router.post('/login',[
     check('email').isEmail().withMessage('Email invalido.'),
     check('password').isLength({min:3}).withMessage('La contraseña debe tener 8 caracteres.')
-], usuariosController.processLogin)
+], usuariosController.processLogin);
 
-
+//No hace nada mas que mostrar el mail del usuario logueado
 router.get('/check', function(req, res, next){
     if(req.session.usuarioLogueado == undefined){
         res.send('No estas logueado.')
     } else {
         res.send('El usuario logueado es '+ req.session.usuarioLogueado.email)
     }
-})
+});
+
+//Muestra el carrito.
+router.get('/carrito', authMiddleware, usuariosController.carrito);
+
+router.post('/carrito', authMiddleware, usuariosController.agregarCarrito);
+
+router.post('/carrito/borrar', usuariosController.borrarDelCarrito);
 
 
 module.exports = router;
