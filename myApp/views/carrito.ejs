@@ -6,7 +6,7 @@
     <body>
     <%- include('partials/navbar.ejs') %>
     <br>
-    <% if ( items.length != 1) { %>
+    <% if ( items.length != 0) { %>
   <div class="px-4 px-lg-0">
     <div class="pb-5">
       <div class="container">
@@ -35,17 +35,17 @@
                     <% items.forEach(item => { %>
                     <th scope="row" class="border-0">
                       <div class="p-2">
-                            <img src="/images/<%=item.producto.imagen%>" alt="" width="70" class="img-fluid rounded shadow-sm">
+                            <img src="/images/<%=item.producto_imagen%>" alt="" width="70" class="img-fluid rounded shadow-sm">
                             <div class="ml-3 d-inline-block align-middle">
-                              <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle"><%=item.producto.nombre%> </a></h5><span class="text-muted font-weight-normal font-italic d-block">Category: Watches</span>
+                              <h5 class="mb-0"> <a href="/productos/<%=item.producto_id%> " class="text-dark d-inline-block align-middle"><%=item.producto_nombre%> </a></h5><span class="text-muted font-weight-normal font-italic d-block"></span>
                             </div>
                           </div>
                         </th>
                         <td class="border-0 align-middle"><strong>$<%=item.precio%> </strong></td>
                         <td class="border-0 align-middle"><strong></strong></td>
-                        <form action="/usuarios/borrarDelCarrito" method="POST">
+                        <form action="/usuarios/carrito/borrar" method="POST">
                           <input type="hidden" name="itemId" value="<%=item.id%> ">
-                          <td class="border-0 align-middle"><a href="/usuarios/" class="text-dark"><i class="fa fa-trash"></i></a></td>
+                        <td class="border-0 align-middle"><button type="submit" class="btn btn-danger" />ELIMINAR</td>
                         </form>
                       </tr>
                       <% }) %>
@@ -54,25 +54,27 @@
                 </div>
               </div>
             </div>
-            <% } %>
-  
-        <div class="row py-5 p-4 bg-white rounded shadow-sm">
-          
-          <div class="col-12">
-            <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Order summary </div>
-            <div class="p-4">
-              <ul class="list-unstyled mb-4">
-                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
-                  <h5 class="font-weight-bold">$400.00</h5>
-                </li>
-              </ul><a href="#" class="btn btn-dark rounded-pill py-2 btn-block">Procceed to checkout</a>
+            
+            <div class="row py-5 p-4 bg-white rounded shadow-sm">
+              
+              <div class="col-12">
+                <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Order summary </div>
+                <div class="p-4">
+                  <ul class="list-unstyled mb-4">
+                    <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
+                      <h5 class="font-weight-bold">$400.00</h5>
+                    </li>
+                  </ul><a href="#" class="btn btn-dark rounded-pill py-2 btn-block">Procceed to checkout</a>
+                </div>
+              </div>
             </div>
+            
           </div>
         </div>
-  
       </div>
-    </div>
-  </div>
-<%- include('partials/footer.ejs') %>
+      <% } else { %>
+        <%- include('partials/carritoVacio.ejs') %>
+      <% } %>
+      <%- include('partials/footer.ejs') %>
 </body>
 </html>

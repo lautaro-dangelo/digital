@@ -71,9 +71,6 @@ let usuariosController = {
             }
         })
 
-        
-
-     
     }else{
         res.render('login', {errors: errors});
     }
@@ -97,15 +94,16 @@ let usuariosController = {
     },
     agregarCarrito: function( req, res ) {
 
-      db.Producto.findByPk( req.body.id)
+      db.Producto.findByPk(req.body.productoId)
       .then( producto =>{
-
         db.Item.create({
-            precioUnitario: producto.precio,
+            precio: producto.precio ,
             state: 1,
             order_id: null,
-            usuario_id: req.session.usuario.id,
+            usuario_id: req.session.usuarioLogueado.id,
             producto_id: producto.id,
+            producto_imagen: producto.imagen,
+            producto_nombre: producto.nombre
         })
       })
       .then( (item) => {
@@ -115,7 +113,6 @@ let usuariosController = {
       })
     },
     borrarDelCarrito: function( req, res ) {
-
         db.Item.destroy({
             where:{
              id: req.body.itemId,
