@@ -2,10 +2,11 @@ var express = require('express');
 var router = express.Router();
 
 const usuariosApiController = require('../../controllers/api/usuariosApiController');
+const adminMiddleware = require('../../middlewares/adminMiddleware');
 
-router.get('/', usuariosApiController.listado);
+router.get('/', adminMiddleware ,usuariosApiController.listado);
 
-router.get('/:id', usuariosApiController.find);
+router.get('/:id', adminMiddleware ,usuariosApiController.find);
 
 
 

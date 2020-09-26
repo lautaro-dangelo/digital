@@ -18,7 +18,7 @@ let usuariosController = {
             email: a[0],
             password: await bcrypt.hash(a[1], 10),
         });
-        res.redirect('/')} else{
+        res.redirect('/productos')} else{
             res.render('registro', {errors: errors.errors})
         }
     },

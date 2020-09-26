@@ -1,11 +1,14 @@
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
 
 const multer = require('multer');
  let path = require('path');
 
 
-var productosController = require('../controllers/productosController');
+let productosController = require('../controllers/productosController');
+
+let adminMiddleware = require('../middlewares/adminMiddleware');
+
 
 
 let storage = multer.diskStorage({
@@ -18,10 +21,10 @@ let storage = multer.diskStorage({
     }
 });
 
-var upload = multer({ storage: storage});
+let upload = multer({ storage: storage});
 
 //Creacion de producto
-router.get('/crear', productosController.crear);
+router.get('/crear', adminMiddleware, productosController.crear);
 router.post('/crear', upload.any(), productosController.guardado);
 
 //Lectura de productos
@@ -31,11 +34,11 @@ router.get('/', productosController.listado);
 router.get('/:id', productosController.detalle);
 
 //Actualizar
-router.get('/editar/:id', productosController.editar);
+router.get('/editar/:id',adminMiddleware, productosController.editar);
 router.post('/editar/:id', upload.any(), productosController.actualizar);
 
 //Borrar
-router.post('/borrar/:id', productosController.borrar)
+router.post('/borrar/:id', adminMiddleware, productosController.borrar)
 
 
 

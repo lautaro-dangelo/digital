@@ -15,16 +15,20 @@
               <h3 class="card-title"><%=producto.nombre %></h3>
               <h5 class="card-title">$<%=producto.precio %></h5>
               <p class="card-text"><%=producto.descripcion%></p>
-              <a href="/productos/editar/<%=producto.id%>" class="btn btn-warning">
+              <% if ( locals.usuario.admin) { %>
+               
+                <a href="/productos/editar/<%=producto.id%>" class="btn btn-warning">
                   Editar
-              </a>
-              <form action="/productos/borrar/<%=producto.id%>" method="POST">
+                </a>
+                <form action="/productos/borrar/<%=producto.id%>" method="POST">
                   <input type="hidden" name='productoId' value="<%=producto.id%>" >
                   <button type="submit" class="btn btn-danger">Borrar</button>
-              </form>
+                </form>
+                <% } else {%>
               <form action="/usuarios/carrito" method="POST">
                 <input type="hidden" name='productoId' value="<%=producto.id%>" >
                 <button type="submit" class="btn btn-primary">Comprar</button>
+              <% } %> 
             </form>
             </div>
           </div>

@@ -1,1 +1,0 @@
-Ingreso en la página /public/javascripts/registro.js

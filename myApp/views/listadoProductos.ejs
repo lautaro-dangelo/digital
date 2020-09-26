@@ -4,6 +4,11 @@
 <!-- Agrego la navbar -->
 <%- include('partials/navbar.ejs') %>
 <div class="container">
+  <% if (locals.usuario.admin) { %>
+    
+    <a  id='crear' class="btn btn-warning" href="/productos/crear" role="button">Crear producto</a>
+   
+  <% } %>
 <div class="row">
   <% for(let i = 0; i < productos.length; i++){ %>
     <a href="productos/<%=productos[i].id%>">
@@ -18,10 +23,12 @@
             <path fill-rule="evenodd" d="M2.5 4.5a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm2-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
           </svg>
           </a>
-          <form action="/usuarios/carrito" method="POST">
-            <input type="hidden" name='productoId' value="<%=productos[i].id%>" >
-        <button class="btn btn-primary">Comprar</button>
-      </form>
+          <% if (!locals.usuario.admin) { %>
+            <form action="/usuarios/carrito" method="POST">
+              <input type="hidden" name='productoId' value="<%=productos[i].id%>" >
+              <button class="btn btn-primary">Comprar</button>
+            </form>
+            <% } %>
       </div>
     </div>
   </div>
@@ -30,7 +37,6 @@
 </div>
 </div>
 <br>
-<a  id='crear' class="btn btn-warning" href="/productos/crear" role="button">Crear producto</a>
 <br>
 <br>
 <br>
