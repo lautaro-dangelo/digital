@@ -9,7 +9,7 @@ module.exports = function(sequelize, dataTypes) {
             primaryKey: true,
             autoIncrement: true
         },
-        orderNumber: {
+        order_number: {
             type: dataTypes.INTEGER
         },
         total:{
@@ -17,8 +17,10 @@ module.exports = function(sequelize, dataTypes) {
         },
         usuario_id:{
             type: dataTypes.INTEGER
-        }
-      
+        },
+        created_at:{
+            type: dataTypes.DATE
+        },
 
     }
    
@@ -30,16 +32,16 @@ module.exports = function(sequelize, dataTypes) {
     let Order = sequelize.define(alias, cols, config);
 
     Order.associate = function( models ) {
-        Item.belongsTo(models.Usuario, {
+        Order.belongsTo(models.Usuario, {
             foreignKey: 'usuario_id'
         })
     };
 
-    Order.associate = function( models ) {
-        Order.belongsTo(models.Order, {
-            foreignKey: 'order_id'
-        })
-    };
+    // Order.associate = function( models ) {
+    //     Order.belongsTo(models.Order, {
+    //         foreignKey: 'order_id'
+    //     })
+    // };
 
     return Order;
     

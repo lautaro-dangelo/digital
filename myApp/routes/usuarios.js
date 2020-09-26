@@ -36,21 +36,20 @@ router.post('/login',[
     check('password').isLength({min:3}).withMessage('La contraseña debe tener 8 caracteres.')
 ], usuariosController.processLogin);
 
-//No hace nada mas que mostrar el mail del usuario logueado
-router.get('/check', function(req, res, next){
-    if(req.session.usuarioLogueado == undefined){
-        res.send('No estas logueado.')
-    } else {
-        res.send('El usuario logueado es '+ req.session.usuarioLogueado.email)
-    }
-});
+//
+router.get('/cerrar', authMiddleware, usuariosController.cerrar);
 
 //Muestra el carrito.
 router.get('/carrito', authMiddleware, usuariosController.carrito);
 
+//Agrega productos al carrito.
 router.post('/carrito', authMiddleware, usuariosController.agregarCarrito);
 
-router.post('/carrito/borrar', usuariosController.borrarDelCarrito);
+//Borra productos del carrito.
+router.post('/carrito/borrar', authMiddleware, usuariosController.borrarDelCarrito);
+
+//
+router.post('/carrito/comprar', authMiddleware, usuariosController.comprar);
 
 
 module.exports = router;

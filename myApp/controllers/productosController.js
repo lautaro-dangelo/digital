@@ -14,8 +14,10 @@ let productosController = {
             descripcion: req.body.descripcion,
             imagen: req.files[0].filename,
             precio: req.body.precio
-        });
+        })
+        .then( () =>{
         res.redirect('/productos')
+        })
     },
     listado: function(req, res) {
         db.Producto.findAll()
@@ -36,7 +38,6 @@ let productosController = {
         })
     },
     actualizar:function(req, res){
-        console.log(req)
         db.Producto.update({
             nombre: req.body.nombre,
             descripcion: req.body.descripcion,
@@ -46,8 +47,10 @@ let productosController = {
             where:{
                 id: req.params.id
             }
-        });
-        res.redirect('/productos/'+req.params.id)
+        })
+        .then( () =>{
+            res.redirect('/productos/'+req.params.id)
+        })
     },
     borrar: function(req, res){
         db.Producto.destroy({

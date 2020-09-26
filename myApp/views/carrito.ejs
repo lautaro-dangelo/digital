@@ -58,13 +58,16 @@
             <div class="row py-5 p-4 bg-white rounded shadow-sm">
               
               <div class="col-12">
-                <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Order summary </div>
+                <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Resumen de la compra </div>
                 <div class="p-4">
                   <ul class="list-unstyled mb-4">
-                    <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
-                      <h5 class="font-weight-bold">$400.00</h5>
+                    <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>                       
+                        <h5 class="font-weight-bold">$  </h5>     
                     </li>
-                  </ul><a href="#" class="btn btn-dark rounded-pill py-2 btn-block">Procceed to checkout</a>
+                  </ul>
+                  <form action="/usuarios/carrito/comprar" method="POST">
+                  <button type="submit" class="btn btn-dark rounded-pill py-2 btn-block">Proceder al pago</button>
+                </form>
                 </div>
               </div>
             </div>

@@ -1,8 +1,8 @@
 let db = require('../database/models');
 let bcrypt = require('bcrypt');
 
-let { check, validationResult, body } = require('express-validator');
-const Item = require('../database/models/Item');
+let { validationResult } = require('express-validator');
+
 
 let usuariosController = {
 
@@ -76,6 +76,16 @@ let usuariosController = {
     }
     },
 
+    cerrar: function(req, res){
+
+       let usuario= req.session.usuarioLogueado ;
+       if(req.cookies.recordame != undefined){
+        res.cookie('recordame', usuario.email, { maxAge: 0})};
+        req.session.destroy();
+        res.redirect("/")
+     
+    },
+
     carrito: function( req, res ){
 
         db.Item.findAll({
@@ -111,14 +121,65 @@ let usuariosController = {
           return res.send(item)
 
       })
+      .then( res  =>{
+        res.redirect('/usuarios/carrito')
+      })
     },
     borrarDelCarrito: function( req, res ) {
         db.Item.destroy({
             where:{
              id: req.body.itemId,
-            }
+            },
+            force: true,
+        })
+        .then( () =>{
+            res.redirect('/usuarios/carrito')
         })
 
+    },
+    comprar: function ( req, res ){
+
+        
+        let total = 0;
+
+        db.Item.findAll({
+            where:{
+                state: 1,
+                usuario_id: req.session.usuarioLogueado.id,
+            }
+        })
+        .then( items => {
+            
+            items.forEach( item => {
+
+                total= total + item.precio;
+                
+            });
+            db.Order.findOne({
+                orders:['created_at', 'DESC']
+            })
+        })
+        .then( order => {
+            return db.Order.create({
+                order_number: order ? order.order_number+1 : 100,
+                total: total,
+                usuario_id: req.session.usuarioLogueado.id,
+            })
+        })
+        .then( order =>{
+            db.Item.update({
+                state:0,
+                order_id: order.id
+            }, {
+            where:{
+                usuario_id: req.session.usuarioLogueado.id,
+                state: 1,
+                }
+            })
+        })
+        .then( () =>{
+            res.render('comprado')
+        })
     },
 
 };
