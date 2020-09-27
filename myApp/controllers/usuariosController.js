@@ -160,6 +160,7 @@ let usuariosController = {
             })
         })
         .then( order => {
+            
             return db.Order.create({
                 order_number: order ? order.order_number+1 : 100,
                 total: total,
