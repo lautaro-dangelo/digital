@@ -96,8 +96,10 @@ let usuariosController = {
             include: ['productos']
         })
         .then( ( items ) =>{
-
-            return res.render('carrito', {items});
+            let total = items.reduce( (total, item) => {
+                return total = total+item.precio
+            }, 0)
+            return res.render('carrito', {items, total});
 
         })
   
@@ -154,8 +156,8 @@ let usuariosController = {
 
                 total= total + item.precio;
                 
-            });
-            db.Order.findOne({
+            });  
+            return db.Order.findOne({
                 orders:['created_at', 'DESC']
             })
         })
