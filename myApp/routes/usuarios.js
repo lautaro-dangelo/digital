@@ -5,9 +5,12 @@ const usuariosController = require('../controllers/usuariosController');
 
 let { check, body } = require('express-validator');
 
+let adminMiddleware = require('../middlewares/adminMiddleware');
 let authMiddleware = require('../middlewares/authMiddleware');
-
 let guestMiddleware = require('../middlewares/guestMiddleware');
+
+
+
 
 //Muestra el formulario de registro
 router.get('/', guestMiddleware, usuariosController.registro);
@@ -48,8 +51,15 @@ router.post('/carrito', authMiddleware, usuariosController.agregarCarrito);
 //Borra productos del carrito.
 router.post('/carrito/borrar', authMiddleware, usuariosController.borrarDelCarrito);
 
-//
+//Genera la compra y la orden en la base de datos.
 router.post('/carrito/comprar', authMiddleware, usuariosController.comprar);
 
+//Muestra los usuarios para darles permiso de administrador.
+router.get('/admin', adminMiddleware, usuariosController.admin);
 
+//Otorga permisos de administrador.
+router.post('/makeAdmin/:id', adminMiddleware, usuariosController.makeAdmin);
+
+//Quita permisos de administrador.
+router.post('/quitAdmin/:id', adminMiddleware, usuariosController.quitAdmin);
 module.exports = router;

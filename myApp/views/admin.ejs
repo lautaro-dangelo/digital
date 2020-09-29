@@ -1,0 +1,52 @@
+<%- include('./partials/head.ejs') %> 
+<%- include('./partials/navbar.ejs') %> 
+
+
+
+<table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">NOMBRE</th>
+        <th scope="col">MAIL</th>
+        <th scope="col">ADMIN</th>
+        <th scope="col">PERMISOS</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% usuarios.forEach(usuario => { %>
+            <tr>
+                <th scope="row"><%=usuario.id%> </th>
+                <td><%=usuario.nombre%> </td>
+                <td><%=usuario.email%> </td>
+                <td><%=usuario.admin%> </td>
+                <% if (!usuario.admin) { %>
+                  <form action="/usuarios/makeAdmin/<%=usuario.id%>" method="POST">
+                    <input type="hidden" name="usuarioId" value='<%=usuario.id %>'/>
+                    <td><button type="submit"  class="btn btn-success">Otorgar</button></td>
+                  </form>
+                  <% } else { %>
+                    <form action="/usuarios/quitAdmin/<%=usuario.id%>"  method="POST" >
+                      <input type="hidden" name="usuarioId2" value='<%=usuario.id %>'/>
+                    <td><button type="submit" class="btn btn-danger">Quitar</button></td>
+                  </form>
+                  <% } %>
+            </tr>
+            <% }) %>
+    </tbody>
+  </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%- include('./partials/footer.ejs') %> 

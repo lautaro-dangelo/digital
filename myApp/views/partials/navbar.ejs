@@ -12,6 +12,11 @@
         <li class="nav-item ">
           <a class="nav-link" href="/productos">Productos</a>
         </li>
+        <% if (locals.usuario.admin) { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/usuarios/admin">Permisos</a>
+          </li>
+        <% } %>
         <% if ( locals.usuario ) { %>
          <li class="nav-link">Hola <%= locals.usuario.nombre %> </li>
          <li>

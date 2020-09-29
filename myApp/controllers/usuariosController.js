@@ -184,6 +184,42 @@ let usuariosController = {
             res.render('comprado')
         })
     },
+    admin: function (req, res ){
+        db.Usuario.findAll()
+        .then( usuarios => {
+            res.render('admin', {usuarios})
+        })
+    },
+    makeAdmin: function (req, res){
+        db.Usuario.findByPk(req.body.usuarioId)
+      .then( () =>{
+        db.Usuario.update({
+            admin: 1
+        },{
+            where:{
+                id: req.params.id
+            }
+        })
+      })
+      .then(() =>{
+          res.redirect('/usuarios/admin')
+      })
+    },
+    quitAdmin: function( req, res ){
+        db.Usuario.findByPk(req.body.usuarioId2)
+      .then( (usuario) =>{
+        db.Usuario.update({
+            admin: usuario.admin = 0
+        },{
+            where:{
+                id: req.params.id,
+            }
+        })
+      })
+      .then(() =>{
+          res.redirect('/usuarios/admin')
+      })
+    }
 
 };
 
