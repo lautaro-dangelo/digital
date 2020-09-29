@@ -158,7 +158,7 @@ let usuariosController = {
                 
             });  
             return db.Order.findOne({
-                orders:['created_at', 'DESC']
+                order:[['created_at', 'DESC']]
             })
         })
         .then( order => {
@@ -167,6 +167,7 @@ let usuariosController = {
                 order_number: order ? order.order_number+1 : 100,
                 total: total,
                 usuario_id: req.session.usuarioLogueado.id,
+                created_at: new Date()
             })
         })
         .then( order =>{
