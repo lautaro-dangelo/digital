@@ -22,9 +22,9 @@
     </div>
     <div>
         <label for="">Imagen</label>
-        <input type="file" id="imagen" class="imagen" name="imagen" value="<%=producto.imagen%>">
+        <input type="file" id="imagen" class="imagen btn btn-success" name="imagen" value="<%=producto.imagen%>">
     </div>
-    <button type="submit" class="btn btn-success">Editar</button>
+    <button type="submit" class="btn btn-warning">Editar</button>
 </form>
 <br>
 <form action="/productos/borrar/<%=producto.id%>" method="POST">

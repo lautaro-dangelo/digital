@@ -41,7 +41,7 @@ let productosController = {
         db.Producto.update({
             nombre: req.body.nombre,
             descripcion: req.body.descripcion,
-            imagen: req.body.imagen,
+            imagen: req.files[0].filename,
             precio: req.body.precio
         }, {
             where:{

@@ -5,7 +5,7 @@ body {
 }
 
 .container{
-    background-color: coral;
+    background-color: rgba(80, 255, 240, 0.863);
     border-radius: 15px;
     margin-left: 50px;
     padding-left: 10px;
