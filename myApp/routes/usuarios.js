@@ -20,13 +20,17 @@ router.post('/', [
 check('nombre').isLength({min:4}).withMessage('El nombre debe tener al menos 4 caracteres.'),
 check('email').isEmail().withMessage('El mail no es válido.'),
 check('password').isLength({min:7}).withMessage('La contraseña debe tener al menos 7 caracteres.'),
-body('email').custom( function(){
-    for(let i = 0; i < db.Usuario.length; i++){
-        if(db.Usuario[i].email == value){
-            return false ;
+body('email').custom( value =>{
+    return db.Usuario.findOne({
+        where:{
+            email: value
         }
-    }
-    return true;
+    })
+    .then(usuario =>{
+        if(usuario){
+            return Promise.reject('Email en uso.');
+        }
+    })
 }).withMessage('Ya existe un usuario con este mail.')
 ],usuariosController.creado);
 
